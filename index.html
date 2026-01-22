@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile Eat - Makanan Enak, Hati Senang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --cream: #FFFBF0;
+            --light-yellow: #FFF8E1;
+            --yellow: #FFE082;
+            --gold: #FFD54F;
+            --orange: #FFAB40;
+            --brown: #8D6E63;
+            --dark: #5D4037;
+            --gray: #A1887F;
+            --light-gray: #EFEBE9;
+            --shadow: 0 8px 24px rgba(141, 110, 99, 0.12);
+            --shadow-hover: 0 12px 32px rgba(141, 110, 99, 0.18);
+            --radius: 16px;
+        }
+        
+        body {
+            background-color: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .main-header {
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            background: linear-gradient(135deg, #FFD54F 0%, #FFAB40 100%);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 2rem;
+            box-shadow: 0 4px 16px rgba(255, 171, 64, 0.3);
+        }
+        
+        .logo-text h1 {
+            font-size: 2.2rem;
+            color: var(--brown);
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            color: var(--orange);
+        }
+        
+        .logo-text p {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .header-contact {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFE082 100%);
+            padding: 14px 28px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(255, 213, 79, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .header-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 213, 79, 0.3);
+        }
+        
+        .header-contact i {
+            color: var(--orange);
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .header-contact div p:first-child {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .header-contact div p:last-child {
+            font-weight: 700;
+            color: var(--brown);
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #FFD54F 0%, #FFE082 100%);
+            box-shadow: 0 2px 8px rgba(141, 110, 99, 0.1);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+        
+        .nav-links li {
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: var(--brown);
+            text-decoration: none;
+            padding: 18px 25px;
+            display: block;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(255, 232, 130, 0.95) 0%, rgba(255, 213, 79, 0.95) 50%, rgba(255, 171, 64, 0.9) 100%), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1081&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--dark);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255, 171, 64, 0.3), transparent 70%);
+        }
+        
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.6);
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 750px;
+            margin: 0 auto 40px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, white 0%, #FFFBF0 100%);
+            color: var(--brown);
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.15rem;
+            box-shadow: 0 6px 20px rgba(141, 110, 99, 0.25);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, var(--brown) 0%, #8D6E63 100%);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(141, 110, 99, 0.35);
+        }
+        
+        .btn-wa {
+            background: linear-gradient(135deg, #25D366 0%, #1da851 100%);
+            color: white;
+            margin-left: 15px;
+        }
+        
+        .btn-wa:hover {
+            background: linear-gradient(135deg, #1da851 0%, #128C39 100%);
+        }
+        
+        /* Menu Section */
+        .section-title {
+            text-align: center;
+            margin: 80px 0 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--brown);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(to right, #FFD54F 0%, #FFAB40 100%);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            box-shadow: 0 2px 8px rgba(255, 171, 64, 0.3);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .menu-card {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-hover);
+            border-color: #FFE082;
+        }
+        
+        .menu-img {
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .menu-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(255, 213, 79, 0.1) 100%);
+            pointer-events: none;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .menu-card:hover .menu-img img {
+            transform: scale(1.08);
+        }
+        
+        .menu-info {
+            padding: 30px;
+        }
+        
+        .menu-category {
+            color: var(--orange);
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .menu-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--brown);
+        }
+        
+        .menu-description {
+            color: var(--gray);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .menu-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--brown);
+        }
+        
+        .price-unit {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-left: 5px;
+        }
+        
+        .menu-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .buy-btn {
+            background: linear-gradient(135deg, #FFD54F 0%, #FFAB40 100%);
+            color: var(--brown);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            flex-grow: 1;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 171, 64, 0.25);
+        }
+        
+        .buy-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .buy-btn:hover {
+            background: linear-gradient(135deg, #FFAB40 0%, #FF9800 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 171, 64, 0.4);
+        }
+        
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFE082 100%);
+            border-radius: var(--radius);
+            padding: 70px;
+            margin: 80px 0;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 213, 79, 0.3), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .about-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--brown);
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: var(--radius);
+            box-shadow: 0 12px 32px rgba(141, 110, 99, 0.2);
+            transition: transform 0.4s ease;
+        }
+        
+        .about-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* How to Order Section */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+        
+        .step {
+            background: linear-gradient(to bottom, white 0%, #FFFBF0 100%);
+            padding: 45px 35px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+        
+        .step:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-hover);
+            border-color: #FFE082;
+        }
+        
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FFD54F 0%, #FFAB40 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 0 auto 25px;
+            box-shadow: 0 4px 16px rgba(255, 171, 64, 0.3);
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            color: var(--brown);
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #6D4C41 0%, #5D4037 100%);
+            color: white;
+            padding-top: 70px;
+            margin-top: 80px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #FFD54F 0%, #FFAB40 100%);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #FFD54F 0%, #FFAB40 100%);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info i {
+            color: #FFD54F;
+            margin-right: 15px;
+            margin-top: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(255, 213, 79, 0.2), rgba(255, 171, 64, 0.2));
+            border-radius: 50%;
+            margin-right: 15px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            font-size: 1.3rem;
+            border: 2px solid transparent;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(135deg, #FFD54F 0%, #FFAB40 100%);
+            color: var(--brown);
+            transform: translateY(-5px) scale(1.1);
+            border-color: white;
+            box-shadow: 0 6px 20px rgba(255, 213, 79, 0.4);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 0;
+            text-align: center;
+            color: #E0D7D0;
+            font-size: 1rem;
+        }
+        
+        .copyright i {
+            color: #FFD54F;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about {
+                flex-direction: column;
+            }
+            
+            .about-content {
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--brown);
+                font-size: 1.8rem;
+                cursor: pointer;
+                margin-left: auto;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-contact {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .about {
+                padding: 40px 20px;
+            }
+            
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Smile <span>Eat</span></h1>
+                            <p>Makanan Enak, Hati Senang</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="header-contact">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <p>Pesan via WhatsApp</p>
+                            <p>0877-2646-1509</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav>
+            <div class="container">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <ul class="nav-links">
+                        <li><a href="#" class="active">Beranda</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Rasa Autentik, Harga Bersahabat</h1>
+            <p>Nikmati tiga menu spesial kami: Sate Maranggi gurih, Es Cincau segar, dan Pisang Goreng Madu yang manis. Pesan sekarang, kami antar sampai rumah!</p>
+            <a href="#menu" class="btn">Lihat Menu</a>
+            <a href="https://wa.me/6287726461509?text=Halo%20Smile%20Eat,%20saya%20ingin%20memesan%20makanan" class="btn btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> Pesan via WhatsApp</a>
+        </div>
+    </section>
+    
+    <!-- Menu Section -->
+    <section class="container" id="menu">
+        <div class="section-title">
+            <h2>Menu Spesial Kami</h2>
+        </div>
+        
+        <div class="menu-grid">
+            <!-- Sate Maranggi -->
+            <div class="menu-card">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Sate Maranggi">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-category">MAKANAN UTAMA</div>
+                    <h3 class="menu-name">Sate Maranggi</h3>
+                    <p class="menu-description">Sate daging sapi khas Purwakarta dengan bumbu rempah spesial yang meresap. Dipanggang dengan arang untuk rasa yang autentik. Disajikan dengan lontong dan sambal kacang.</p>
+                    <div class="menu-price">
+                        <span class="price">Rp 8.000</span>
+                        <span class="price-unit">/ 4 pcs</span>
+                    </div>
+                    <div class="menu-actions">
+                        <button class="buy-btn" onclick="orderViaWA('Sate Maranggi', 8000)">
+                            <i class="fab fa-whatsapp"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Es Cincau -->
+            <div class="menu-card">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Es Cincau">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-category">MINUMAN SEGAR</div>
+                    <h3 class="menu-name">Es Cincau</h3>
+                    <p class="menu-description">Minuman segar dengan cincau hitam asli, susu kental manis, dan gula aren. Disajikan dingin dengan es serut. Cocok untuk menemani makan siang atau sore hari.</p>
+                    <div class="menu-price">
+                        <span class="price">Rp 5.000</span>
+                        <span class="price-unit">/ gelas</span>
+                    </div>
+                    <div class="menu-actions">
+                        <button class="buy-btn" onclick="orderViaWA('Es Cincau', 5000)">
+                            <i class="fab fa-whatsapp"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pisang Goreng Madu -->
+            <div class="menu-card">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1609799549540-4eac213df7e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Pisang Goreng Madu">
+                </div>
+                <div class="menu-info">
+                    <div class="menu-category">CAMILAN MANIS</div>
+                    <h3 class="menu-name">Pisang Goreng Madu</h3>
+                    <p class="menu-description">Pisang goreng dengan lapisan tepung yang renyah dilumuri madu asli dan taburan keju parut. Disajikan hangat untuk kenikmatan maksimal.</p>
+                    <div class="menu-price">
+                        <span class="price">Rp 5.000</span>
+                        <span class="price-unit">/ porsi</span>
+                    </div>
+                    <div class="menu-actions">
+                        <button class="buy-btn" onclick="orderViaWA('Pisang Goreng Madu', 5000)">
+                            <i class="fab fa-whatsapp"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="container" id="tentang">
+        <div class="about">
+            <div class="about-content">
+                <h2>Tentang Smile Eat</h2>
+                <p>Smile Eat hadir untuk memberikan pengalaman makan yang menyenangkan dengan menu sederhana namun berkualitas. Kami percaya bahwa makanan enak tidak harus mahal, yang penting adalah rasa autentik dan bahan-bahan berkualitas.</p>
+                <p>Dengan tiga menu andalan kami, kami berkomitmen untuk memberikan pelayanan terbaik dan rasa yang konsisten setiap harinya. Semua menu dibuat fresh setiap hari dengan bahan pilihan.</p>
+                <a href="https://wa.me/6287726461509?text=Halo%20Smile%20Eat,%20saya%20ingin%20bertanya%20tentang%20menu%20anda" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> Tanya-tanya dulu</a>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Smile Eat Kitchen">
+            </div>
+        </div>
+    </section>
+    
+    <!-- How to Order Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Cara Memesan</h2>
+        </div>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Pilih Menu</h3>
+                <p>Lihat menu kami dan tentukan pilihan Anda: Sate Maranggi, Es Cincau, atau Pisang Goreng Madu.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Klik Pesan</h3>
+                <p>Klik tombol "Pesan Sekarang" pada menu yang diinginkan. Anda akan diarahkan ke WhatsApp.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Konfirmasi Pesanan</h3>
+                <p>Kirim pesan konfirmasi via WhatsApp dengan detail pesanan dan alamat pengiriman.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Tunggu Pesanan</h3>
+                <p>Pesanan akan diproses dan dikirim ke alamat Anda. Nikmati makanan enak dari Smile Eat!</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Smile Eat</h3>
+                    <p style="margin-bottom: 20px; color: #E0D7D0;">Makanan enak dengan harga terjangkau. Kami menyajikan tiga menu spesial yang pasti bikin Anda tersenyum.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/6287726461509" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak Kami</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>Jl. Makan Enak No. 123, Jakarta</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>0877-2646-1509</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>Setiap Hari: 10.00 - 22.00 WIB</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Menu Kami</h3>
+                    <ul style="list-style: none; color: #E0D7D0;">
+                        <li style="margin-bottom: 10px;">• Sate Maranggi - Rp 8.000/4pcs</li>
+                        <li style="margin-bottom: 10px;">• Es Cincau - Rp 5.000/gelas</li>
+                        <li style="margin-bottom: 10px;">• Pisang Goreng Madu - Rp 5.000/porsi</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Smile Eat. Makanan Enak, Hati Senang. | Dibuat dengan <i class="fas fa-heart"></i> untuk pecinta makanan</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to order via WhatsApp
+        function orderViaWA(menuName, price) {
+            // Format the message
+            const message = `Halo Smile Eat, saya ingin memesan:\n\nMenu: ${menuName}\nHarga: Rp ${price.toLocaleString('id-ID')}\n\nBisa dikirim ke alamat saya?`;
+            
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // WhatsApp number
+            const phoneNumber = "6287726461509";
+            
+            // Open WhatsApp
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+        
+        // Simple navigation highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Smooth scroll for anchor links
+                    const targetId = this.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Highlight active nav based on scroll position
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navHeight = 100;
+                
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - navHeight)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}` || 
+                        (current === '' && link.getAttribute('href') === '#')) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
